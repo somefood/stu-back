@@ -16,16 +16,16 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Interest {
+public class UserTag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-	@JoinColumn
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(targetEntity = Tag.class, fetch = FetchType.LAZY)
-	@JoinColumn
+	@JoinColumn(name = "tag_id")
 	private Tag tag;
 }
