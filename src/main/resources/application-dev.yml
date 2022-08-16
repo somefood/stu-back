@@ -1,0 +1,38 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+  datasource:
+    url: ${local.url}
+    driver-class-name: org.h2.Driver
+    username: ${local.username}
+    password: ${local.password}
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: ${github.client-id}
+            clientSecret: ${github.client-secret}
+
+          google:
+            clientId: ${google.client-id}
+            clientSecret: ${google.client-secret}
+            scope:
+              - email
+              - profile
+app:
+  auth:
+    token:
+      secret-key: ${jwt-token.secret-key}
+      refresh-cookie-key: "refresh"
+  oauth2:
+    authorizedRedirectUri: ${redirect.url}
