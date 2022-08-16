@@ -2,6 +2,7 @@ package com.stu.backend.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
@@ -15,18 +16,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "Users")
+@Table(name = "member")
 @Entity
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String username;
-	private String password;
+	private String email;
+
+	@Enumerated(EnumType.STRING)
+	private AuthProvider authProvider;
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -34,6 +38,8 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
+	private String refreshToken;
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-	private List<Interest> interestList;
+	private List<UserTag> userTags;
 }
