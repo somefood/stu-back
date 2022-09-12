@@ -26,6 +26,7 @@ spring:
           google:
             clientId: ${google.client-id}
             clientSecret: ${google.client-secret}
+            redirect-uri: ${redirect.uri}
             scope:
               - email
               - profile
@@ -36,3 +37,9 @@ app:
       refresh-cookie-key: "refresh"
   oauth2:
     authorizedRedirectUri: ${redirect.url}
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
